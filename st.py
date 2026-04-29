@@ -14,7 +14,7 @@ Izpildits=[]
 #Uztaisi lai nevar uzspiest pogu ja nav nekas ievadits
 #Oki guys tatad parveido to par unixu un atnem no sobrideja un tad lai programma gul lidz tam laikam, izmet pazinojumu un nem nakamo
 #Jauna top ideja ir ka checku uztaisa ik pa minutei, lai nesanak ta ka kamer programma ir aizmigusi tiek pievienots jauns pazinojums kas ir drizak bet netiek piefiksets
-#Multithreadingu vrbt vajag?
+#Multithreadingu vrbt vajag? nvm ir jau
 def IevadeJauns():
     global I
     print("tests")
