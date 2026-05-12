@@ -102,13 +102,6 @@ def PatiesamPatiesamSeko():
             print(Laiki[i])
             if Izpildits[i]==1:
                 if Laiki[i]<=nowUnix:
-                    print("Es esmu debug zina")
-                    #IzveidotLabeli()
-                    #global LabeluSkaitsKopa
-                    #Uzraksts=("Zina:", Zinas[i], "Laiks:", Laiki[i])
-                    #PazinojumaLabelis=Label(window, text=Uzraksts)
-                    #LabeluSkaitsKopa=LabeluSkaitsKopa+1
-                    #PazinojumaLabelis.grid(row=LabeluSkaitsKopa, column=0, padx=10, pady=10)
                     if int(varc1.get()) == 1:
                         messagebox.showinfo("Atgadinajums: ", Zinas[i])
                     if int(varc2.get()) == 1:
