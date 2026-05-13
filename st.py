@@ -109,7 +109,7 @@ def PatiesamPatiesamSeko():
                         messagebox.showinfo("Atgadinajums: ", Zinas[i])
                     if int(varc2.get()) == 1:
                         if laucinsEpasts.get() != "" and laucinsParole.get() != "":
-                            resend.api_key = laucinsParole.get() #re_ZToNv2nZ_3AbuzBZrm8F2Zdz1ES2946av
+                            resend.api_key = laucinsParole.get() 
                             params: resend.Emails.SendParams = {
                                 "from": "Acme <onboarding@resend.dev>",
                                 "to": [laucinsEpasts.get()],
