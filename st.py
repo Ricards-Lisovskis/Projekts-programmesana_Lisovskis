@@ -76,14 +76,17 @@ def Saglabat2():
     nowUnix=now.timestamp()
     #print(now)
     #print(nowUnix)
-    dtJaunaisLaiks=datetime.datetime(int(gads.get()), int(menesis.get()), int(diena.get()), int(stunda.get()), int(minute.get()))
-    unixJaunaisLaiks=dtJaunaisLaiks.timestamp()
-    tekstsI=laucinsZina.get()
-    Laiki.append(unixJaunaisLaiks)
-    Zinas.append(tekstsI)
-    Izpildits.append(1)
-    print(Zinas)
-    print(Laiki)
+    if int(gads.get()) != "" and int(menesis.get()) != "" and int(diena.get()) != "" and int(stunda.get()) != "" and int(minute.get()) != "" and laucinsZina.get() != "":
+        dtJaunaisLaiks=datetime.datetime(int(gads.get()), int(menesis.get()), int(diena.get()), int(stunda.get()), int(minute.get()))
+        unixJaunaisLaiks=dtJaunaisLaiks.timestamp()
+        tekstsI=laucinsZina.get()
+        Laiki.append(unixJaunaisLaiks)
+        Zinas.append(tekstsI)
+        Izpildits.append(1)
+        print(Zinas)
+        print(Laiki)
+    else:
+        print("Aizpildi visus laucinus")
 
 #Cikls laikam
 def PatiesamPatiesamSeko():
@@ -106,7 +109,7 @@ def PatiesamPatiesamSeko():
                         messagebox.showinfo("Atgadinajums: ", Zinas[i])
                     if int(varc2.get()) == 1:
                         if laucinsEpasts.get() != "" and laucinsParole.get() != "":
-                            resend.api_key = laucinsParole.get()
+                            resend.api_key = laucinsParole.get() #re_ZToNv2nZ_3AbuzBZrm8F2Zdz1ES2946av
                             params: resend.Emails.SendParams = {
                                 "from": "Acme <onboarding@resend.dev>",
                                 "to": [laucinsEpasts.get()],
