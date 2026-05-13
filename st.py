@@ -7,19 +7,38 @@ import tkinter as tk
 from tkinter import messagebox
 import threading
 import resend
+import json
+from pathlib import Path
 I=1
 L=1
 Zinas=[]
 Laiki=[]
 Izpildits=[]
 Labelsaraksts=[]
-#Daramo darbinu saraksts: vajag settings [], pogu pievienot ierakstu, to uzspiezot paradas teksta lodzins, togglojams atgadinajuma lodzins (default on), poga postot, togglojams atgadinajuma teksta lodzins, togglojams cik reizu un cik pirms/pec laika atgadinat; galvenaja menu ir rindina visi sobrideji atgadinajumi un piezimes, var ieslegt ari rezimus kuros ir tikai viens vai otrs
-#Uztaisi lai nevar uzspiest pogu ja nav nekas ievadits
-#Oki guys tatad parveido to par unixu un atnem no sobrideja un tad lai programma gul lidz tam laikam, izmet pazinojumu un nem nakamo
-#Jauna top ideja ir ka checku uztaisa ik pa minutei, lai nesanak ta ka kamer programma ir aizmigusi tiek pievienots jauns pazinojums kas ir drizak bet netiek piefiksets
-#Multithreadingu vrbt vajag? nvm ir jau
-#Pievieno checku vai ir pilns viss pirms saglabasanas, default vertibas varbut
-#Poga sobridejo laiku panemt, labeli, settingi, epasts, labaka laika izvelne
+SAVE_FILE = "atgadinajumi.json"
+#Varbut labaku izvelni uztaisit?
+def saglabat_datus(zinas, laiki, izpildits, filename=SAVE_FILE):
+    data = {
+        "Zinas": zinas,
+        "Laiki": laiki,
+        "Izpildits": izpildits
+    }
+
+    with open(filename, "w") as f:
+        json.dump(data, f, indent=4)
+def ieladet_datus(filename=SAVE_FILE):
+    if not Path(filename).exists():
+        return [], [], []
+
+    with open(filename, "r") as f:
+        data = json.load(f)
+
+    zinas = data.get("Zinas", [])
+    laiki = data.get("Laiki", [])
+    izpildits = data.get("Izpildits", [])
+
+    return zinas, laiki, izpildits
+Zinas, Laiki, Izpildits = ieladet_datus()
 def IevadeJauns():
     global I
     print("tests")
@@ -76,7 +95,7 @@ def Saglabat2():
     nowUnix=now.timestamp()
     #print(now)
     #print(nowUnix)
-    if int(gads.get()) != "" and int(menesis.get()) != "" and int(diena.get()) != "" and int(stunda.get()) != "" and int(minute.get()) != "" and laucinsZina.get() != "":
+    if str(gads.get()) != "" and str(menesis.get()) != "" and str(diena.get()) != "" and str(stunda.get()) != "" and str(minute.get()) != "" and laucinsZina.get() != "":
         dtJaunaisLaiks=datetime.datetime(int(gads.get()), int(menesis.get()), int(diena.get()), int(stunda.get()), int(minute.get()))
         unixJaunaisLaiks=dtJaunaisLaiks.timestamp()
         tekstsI=laucinsZina.get()
@@ -85,6 +104,7 @@ def Saglabat2():
         Izpildits.append(1)
         print(Zinas)
         print(Laiki)
+        saglabat_datus(Zinas, Laiki, Izpildits)
     else:
         print("Aizpildi visus laucinus")
 
